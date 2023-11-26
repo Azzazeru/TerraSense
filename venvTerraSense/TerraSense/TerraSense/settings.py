@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+import djongo
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%9!*-07n&vp4)b9p-!0a-l+lqd*8+=$^q9^hu)#l_#+b8sm1s!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -76,10 +78,17 @@ WSGI_APPLICATION = 'TerraSense.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'TerraSenseDB',  # Nombre de la base de datos
+        'CLIENT': {
+            'host': 'mongodb+srv://Aaron:1234567890@cluster0.fsizvua.mongodb.net/TerraSenseDB',
+            'username': 'Aaron',
+            'password': '1234567890',
+            'authMechanism': 'SCRAM-SHA-1'
+        }
     }
 }
+
 
 
 # Password validation
